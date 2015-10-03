@@ -1,7 +1,7 @@
 ﻿
 /**
- * Exercise 3.31 - Andrew Worthington
-*/
+ * Exercise 3.32 - Andrew Worthington
+ */
 public class ClockDisplay
 {
     private NumberDisplay hours;
@@ -14,7 +14,7 @@ public class ClockDisplay
      */
     public ClockDisplay()
     {
-        hours = new NumberDisplay(11);
+        hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
         updateDisplay();
     }
@@ -26,7 +26,7 @@ public class ClockDisplay
      */
     public ClockDisplay(int hour, int minute)
     {
-        hours = new NumberDisplay(11);
+        hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
         setTime(hour, minute);
     }
@@ -70,10 +70,15 @@ public class ClockDisplay
     {
         if(hours.getValue() == 0){
            displayString = "12:" + 
-                        minutes.getDisplayValue();
+                        minutes.getDisplayValue() + "am";
+        }else if(hours.getValue() < 12){
+            displayString = hours.getDisplayValue() + ":" + 
+                        minutes.getDisplayValue() + "am";
+        }else if(hours.getValue() == 13){
+            displayString = "12:" +
+                        minutes.getDisplayValue() + "pm";
         }else{
-        displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue();
+            displayString = hours.getValue() - 12 + ":" + minutes.getDisplayValue() + "pm";
         }
     }
 }
